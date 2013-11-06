@@ -1,5 +1,12 @@
 IdeaEr4::Application.routes.draw do
 
+  resources :missions do
+    resources :context do
+      resources :geosmaps
+    end
+    
+  end
+  
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   root 'static_pages#home'

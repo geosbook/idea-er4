@@ -1,0 +1,2 @@
+class GeosmapsController < ApplicationController
+end

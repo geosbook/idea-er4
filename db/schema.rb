@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131102164841) do
+ActiveRecord::Schema.define(version: 20131106192302) do
+
+  create_table "contexts", force: true do |t|
+    t.string   "name"
+    t.integer  "mission_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contexts", ["mission_id"], name: "index_contexts_on_mission_id"
+
+  create_table "geosmaps", force: true do |t|
+    t.float    "centerlat"
+    t.float    "centerlng"
+    t.string   "name"
+    t.integer  "zoom"
+    t.string   "maptype"
+    t.integer  "context_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "geosmaps", ["context_id"], name: "index_geosmaps_on_context_id"
+
+  create_table "missions", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
