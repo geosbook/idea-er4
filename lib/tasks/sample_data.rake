@@ -11,8 +11,22 @@ namespace :db do
                           is in charge to identify all incidents in the area of 
                           interest and activate and monitor the appropriate assets for the 
                           quickly resolution of the incidents')
-    @context = Context.create!(name: 'Emergency Response System Context')
-    @geosmap = Geosmap.create!(name: 'Emergency Response System Default Map', centerlat:'24.0',
+    @context = Context.create!(name: 'Emergency Response System Live Context')
+    @geosmap = Geosmap.create!(name: 'Emergency Response System Live Default Map', centerlat:'24.0',
+                                 centerlng:'57.0', zoom:'12', maptype:'ROADMAP')
+    @context.mission = @mission
+    @geosmap.context = @context
+    @context.save
+    @geosmap.save
+    @context = Context.create!(name: 'Emergency Response System Training Context')
+    @geosmap = Geosmap.create!(name: 'Emergency Response System Training Default Map', centerlat:'24.0',
+                                 centerlng:'57.0', zoom:'12', maptype:'ROADMAP')
+    @context.mission = @mission
+    @geosmap.context = @context
+    @context.save
+    @geosmap.save
+    @context = Context.create!(name: 'Emergency Response System Planning Context')
+    @geosmap = Geosmap.create!(name: 'Emergency Response System Planning Default Map', centerlat:'24.0',
                                  centerlng:'57.0', zoom:'12', maptype:'ROADMAP')
     @context.mission = @mission
     @geosmap.context = @context

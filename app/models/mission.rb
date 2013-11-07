@@ -10,7 +10,7 @@
 #
 
 class Mission < ActiveRecord::Base
-  has_one :context, dependent: :destroy
+  has_many :contexts, dependent: :destroy
   validates :name, presence: true
   
 end

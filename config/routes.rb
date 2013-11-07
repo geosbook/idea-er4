@@ -1,7 +1,7 @@
 IdeaEr4::Application.routes.draw do
 
   resources :missions do
-    resources :context do
+    resources :contexts do
       resources :geosmaps
     end
     
