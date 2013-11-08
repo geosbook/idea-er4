@@ -10,6 +10,8 @@
 #
 
 class Mission < ActiveRecord::Base
+  
+  acts_as_tree dependent: :destroy
   has_many :contexts, dependent: :destroy
   validates :name, presence: true
   
