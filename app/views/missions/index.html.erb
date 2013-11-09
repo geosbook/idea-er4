@@ -1,0 +1,30 @@
+<h1>Listing missions</h1>
+
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Id</th>
+    <th>Parent</th>
+  </tr>
+
+<% @missions.each do |mission| %>
+  <tr>
+    <td><%= button_to mission.name, {:controller=> 'missions', :id=> mission.id,:action=> 'listcontexts'}, 
+                                           :class=>"btn btn-warning", :method=> :get%></td>
+    <td><%= mission.description %></td>
+    <td><%= mission.id %></td>
+    <td><%= mission.parent_id %></td>
+
+    <td><%= button_to 'Change', edit_mission_path(mission), :class=>"btn", :method=>:get %></td>
+    <td><%= button_to 'New Sub-Missions',{:controller=> 'missions', :id=> mission.id,:action=> 'newchild'} , :class=>"btn btn-primary", :method=>:get %></td>
+    <% if mission.id != 1 %>
+    <td><%= button_to 'Delete',{:controller=> 'missions', :id=> mission.id,:action=> 'destroy'} , :class=>"btn btn-primary", :method=>:delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%#= link_to 'New Mission', new_mission_path %>

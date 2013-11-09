@@ -1,7 +1,7 @@
 	<header class="navbar navbar-fixed-top navbar-inverse">
 		<div class="navbar-inner">
 			<div class="container">
-				<%= link_to "idea-er4", '#', id: "logo" %>
+				<%= link_to "idea-er4", root_path, id: "logo" %>
 				<nav>
 					<ul class="nav pull-right">
 						<li><%= link_to "Home",  root_path %></li>
@@ -25,6 +25,7 @@
                         </li>
 						<% else %>
 						   <li><%= link_to "Sign In",  signin_path %></li>
+						   <li><%= link_to "Register",  register_path %></li>
 						<%end%>
 					</ul>
 				</nav>
