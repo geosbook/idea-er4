@@ -186,3 +186,29 @@ input {
     }
   }
 }
+
+
+#map_canvas {
+  position: absolute;
+  float: left;
+  width: 75%;
+  height: 90%;
+  overflow: auto;
+  border: 1px solid gray;
+  left: 2px;
+  display: block;
+
+}
+
+
+#sidebar2 {
+  position: absolute;
+  float: right;
+  width: 24%;
+  height: 90%;
+  overflow: auto;
+  border: 1px solid gray;
+  background-color: black;
+  color: white; 
+  right: 2px;
+}

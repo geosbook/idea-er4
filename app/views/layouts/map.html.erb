@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%=full_title(yield(:title))%></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=true&libraries=drawing,places">  </script>
+    <script type="text/javascript" src="//google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox_packed.js"></script>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+</head>
+<body>
+  <%= render 'layouts/header' %> 
+
+   <div id="map_canvas">
+    <%= yield %>
+    </div>
+   <div id="sidebar2">
+          <table class="table table-bordered">
+          	   <tr>
+          	   	   <td><i  class="icon-globe icon-white"></i> <icon-glass> <%=  @geosmap.name%></td>
+          	   </tr>
+          </table>      	
+   </div>
+    
+</body>
+</html>
+

@@ -1,0 +1,20 @@
+<h1>Listing contexts</h1>
+
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @contexts.each do |context| %>
+  <tr>
+    <td><%= button_to context.name, {:controller=> 'geosmaps', :id=> context.id,:action=> 'list'}, 
+                                           :class=>"btn btn-warning", :method=> :get%></td>
+
+
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%#= link_to 'New Context', new_context_path %>

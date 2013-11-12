@@ -10,7 +10,7 @@ class MissionsController < ApplicationController
   end
   
   def listcontexts
-    
+    redirect_to contexts_url    
   end
 
   def edit

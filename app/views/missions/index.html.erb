@@ -10,7 +10,7 @@
 
 <% @missions.each do |mission| %>
   <tr>
-    <td><%= button_to mission.name, {:controller=> 'missions', :id=> mission.id,:action=> 'listcontexts'}, 
+    <td><%= button_to mission.name, {:controller=> 'contexts', :id=> mission.id,:action=> 'list'}, 
                                            :class=>"btn btn-warning", :method=> :get%></td>
     <td><%= mission.description %></td>
     <td><%= mission.id %></td>
