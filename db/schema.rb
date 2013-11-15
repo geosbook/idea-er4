@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131108115418) do
+ActiveRecord::Schema.define(version: 20131115060239) do
+
+  create_table "assets", force: true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.float    "lat"
+    t.float    "lng"
+    t.float    "speed"
+    t.float    "course"
+    t.float    "height"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "contexts", force: true do |t|
     t.string   "name"
@@ -52,6 +65,49 @@ ActiveRecord::Schema.define(version: 20131108115418) do
     t.integer  "parent_id"
   end
 
+  create_table "people", force: true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.float    "lat"
+    t.float    "lng"
+    t.float    "speed"
+    t.float    "course"
+    t.float    "height"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "role_hierarchies", id: false, force: true do |t|
+    t.integer "ancestor_id",   null: false
+    t.integer "descendant_id", null: false
+    t.integer "generations",   null: false
+  end
+
+  add_index "role_hierarchies", ["ancestor_id", "descendant_id", "generations"], name: "role_anc_desc_udx", unique: true
+  add_index "role_hierarchies", ["descendant_id"], name: "role_desc_idx"
+
+  create_table "roles", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.integer  "enrollable_id"
+    t.string   "enrollable_type"
+    t.integer  "mission_id"
+    t.integer  "manager_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sites", force: true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
@@ -60,9 +116,11 @@ ActiveRecord::Schema.define(version: 20131108115418) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",           default: false
+    t.integer  "role_id_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  add_index "users", ["role_id_id"], name: "index_users_on_role_id_id"
 
 end

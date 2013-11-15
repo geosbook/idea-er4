@@ -10,10 +10,14 @@
 #  password_digest :string(255)
 #  remember_token  :string(255)
 #  admin           :boolean          default(FALSE)
+#  role_id_id      :integer
 #
 
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
+  
+  belongs_to :role
+  
   validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX},
