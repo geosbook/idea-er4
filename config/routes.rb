@@ -3,15 +3,21 @@ IdeaEr4::Application.routes.draw do
   match '/contexts/:id/list' => "contexts#list", via: 'get'
   match '/contexts/:id/geosmapslist' => "geosmaps#list", via: 'get'
   match '/missions/:id/newchild' => "missions#newchild", via: 'get'
+  match '/roles/:id/newchild' => "roles#newchild", via: 'get'
   match '/geosmaps/:id/display' => "geosmaps#display", via: 'get'
   match '/geosmaps/:id/currentmap' => "geosmaps#currentmap", via: 'get'
-
+  resources :assets
+  resources :people
+  resources :sites
   resources :missions do
     resources :missions
     resources :contexts do
       resources :geosmaps
     end
     
+  end
+  resources :roles do
+    resources :roles
   end
   
   resources :users

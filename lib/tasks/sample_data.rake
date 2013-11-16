@@ -1,16 +1,23 @@
 namespace :db do
   desc 'Fill database with sample data'
   task populate: :environment do
-    User.create!(name: 'admin',
+     User.create!(name: 'admin',
                           email: 'italiandealings@gmail.com',
                           password: 'foobar',
                           password_confirmation: 'foobar',
                           admin: true)
-    @mission = Mission.create!(name: 'Emergency Response System',
+    @mission = Mission.create!(name: 'IDEA-ER4',
                           description: 'The Idea-ER4 Emergency Response System 
                           is in charge to identify all incidents in the area of 
                           interest and activate and monitor the appropriate assets for the 
                           quickly resolution of the incidents')
+    @role = Role.create!(name: 'CEO', mission_id: @mission.id, head: true)
+    User.create!(name: 'CEO',
+                          email: 'ceo@idea.com',
+                          password: 'foobar',
+                          password_confirmation: 'foobar',
+                          admin: true,
+                          role_id: @role.id)
     @context = Context.create!(name: 'Emergency Response System Live Context')
     @geosmap = Geosmap.create!(name: 'Emergency Response System Live Default Map', centerlat:'24.0',
                                  centerlng:'57.0', zoom:'12', maptype:'ROADMAP')
@@ -32,15 +39,5 @@ namespace :db do
     @geosmap.context = @context
     @context.save
     @geosmap.save
-    5.times do |n|
-      name = Faker::Name.name
-      email = "example-#{n+1}@railstutorial.org"
-      password = "password"
-      User.create!(name: name,
-                            email: email,
-                            password: password,
-                            password_confirmation: password)
-                            
-    end
   end
 end

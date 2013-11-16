@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131115060239) do
+ActiveRecord::Schema.define(version: 20131116125429) do
 
   create_table "assets", force: true do |t|
     t.string   "name"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20131115060239) do
     t.integer  "manager_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "head",            default: false
   end
 
   create_table "sites", force: true do |t|
@@ -116,11 +117,11 @@ ActiveRecord::Schema.define(version: 20131115060239) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",           default: false
-    t.integer  "role_id_id"
+    t.integer  "role_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
-  add_index "users", ["role_id_id"], name: "index_users_on_role_id_id"
+  add_index "users", ["role_id"], name: "index_users_on_role_id"
 
 end

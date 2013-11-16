@@ -6,6 +6,7 @@
     <th>Description</th>
     <th>Id</th>
     <th>Parent</th>
+    <th>      </th>
   </tr>
 
 <% @missions.each do |mission| %>
@@ -16,6 +17,7 @@
     <td><%= mission.id %></td>
     <td><%= mission.parent_id %></td>
 
+    <td><%= button_to 'Organization', roles_path, :class=>"btn", :method=>:get %></td>
     <td><%= button_to 'Change', edit_mission_path(mission), :class=>"btn", :method=>:get %></td>
     <td><%= button_to 'New Sub-Missions',{:controller=> 'missions', :id=> mission.id,:action=> 'newchild'} , :class=>"btn btn-primary", :method=>:get %></td>
     <% if mission.id != 1 %>

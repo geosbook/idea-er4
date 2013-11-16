@@ -12,7 +12,7 @@
 
 class Mission < ActiveRecord::Base
   
-  acts_as_tree dependent: :delete_all
+  acts_as_tree dependent: :delete_all, :with_advisory_lock => false
   has_many :contexts, dependent: :destroy
   validates :name, presence: true
   

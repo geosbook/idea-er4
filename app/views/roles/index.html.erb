@@ -1,0 +1,33 @@
+<h1>Listing roles</h1>
+
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Id</th>
+    <th>Parent</th>
+    <th>Type</th>
+    <th>Child</th>
+    <th>Mission</th>
+    <th>Manager</th>
+  </tr>
+
+<% @roles.each do |role| %>
+  <tr>
+    <td><%= role.name %></td>
+    <td><%= role.id %></td>
+    <td><%= role.parent_id %></td>
+    <td><%= role.enrollable_type %></td>
+    <td><%= role.enrollable_id %></td>
+    <td><%= role.mission_id %></td>
+    <td><%= role.manager_id %></td>
+
+    <td><%= button_to 'Change', edit_role_path(role), :class=>"btn", :method=>:get %></td>
+    <td><%= button_to 'New Role',{:controller=> 'roles', :id=> role.id,:action=> 'newchild'} , :class=>"btn btn-primary", :method=>:get %></td>
+    <td><%= button_to 'Delete',{:controller=> 'roles', :id=> role.id,:action=> 'destroy'} , :class=>"btn btn-primary", :method=>:delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%#= link_to 'New Role', new_role_path %>

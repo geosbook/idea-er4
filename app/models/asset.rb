@@ -16,7 +16,7 @@
 #
 
 class Asset < ActiveRecord::Base
-  has_many :roles, as :enrollable
+  has_many :roles, as: :enrollable
   has_one :user, through: :role
   validates :name, presence: true
 

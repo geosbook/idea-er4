@@ -10,7 +10,7 @@
 #  password_digest :string(255)
 #  remember_token  :string(255)
 #  admin           :boolean          default(FALSE)
-#  role_id_id      :integer
+#  role_id         :integer
 #
 
 class User < ActiveRecord::Base
