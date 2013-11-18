@@ -8,6 +8,7 @@
     <th>Type</th>
     <th>Child</th>
     <th>Mission</th>
+    <th>Head</th>
     <th>Manager</th>
   </tr>
 
@@ -19,11 +20,13 @@
     <td><%= role.enrollable_type %></td>
     <td><%= role.enrollable_id %></td>
     <td><%= role.mission_id %></td>
+    <td><%= role.head %></td>
     <td><%= role.manager_id %></td>
-
     <td><%= button_to 'Change', edit_role_path(role), :class=>"btn", :method=>:get %></td>
     <td><%= button_to 'New Role',{:controller=> 'roles', :id=> role.id,:action=> 'newchild'} , :class=>"btn btn-primary", :method=>:get %></td>
-    <td><%= button_to 'Delete',{:controller=> 'roles', :id=> role.id,:action=> 'destroy'} , :class=>"btn btn-primary", :method=>:delete %></td>
+    <% if role.id != 1 %>
+       <td><%= button_to 'Delete',{:controller=> 'roles', :id=> role.id,:action=> 'destroy'} , :class=>"btn btn-primary", :method=>:delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

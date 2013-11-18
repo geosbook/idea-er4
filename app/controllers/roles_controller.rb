@@ -1,30 +1,20 @@
 class RolesController < ApplicationController
+  before_action :set_role, only: [:show, :edit, :update, :destroy]
   
     
   def index
     @roles = Role.all
-
-      respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @roles }
-    end
   end
 
   def edit
-    @role = Role.find(params[:id])
+
   end
 
   def update
-    @role = Role.find(params[:id])
-
-    respond_to do |format|
-      if @role.update_attributes(params[:role].permit(:role))
-        format.html { redirect_to roles_path, notice: 'Role was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @role.errors, status: :unprocessable_entity }
-      end
+    if @role.update(role_params)
+      redirect_to roles_path, notice: 'Role was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
@@ -36,26 +26,16 @@ class RolesController < ApplicationController
 
   end
 
-  def newrole
-
-    @mission = Mission.find(params[:id])
-    @role = Role.new
-
-  end
-
   def create
-    @role = Role.new(params[:role].permit!)
+    @role = Role.new(role_params)
     @roleparent = Role.find(@role.parent_id)
+    @role.mission_id = @roleparent.mission_id
 
-    respond_to do |format|
       if @roleparent.children<<@role
-        format.html { redirect_to roles_path, notice: 'Sub-role was successfully created.' }
-        format.json { render json: @role, status: :created, location: @role }
+        redirect_to roles_path, notice: 'Role was successfully created.'
       else
-        format.html { render action: "newchild" }
-        format.json { render json: @role.errors, status: :unprocessable_entity }
+        render action: "newchild" 
       end
-    end
   end
 
 
@@ -74,6 +54,16 @@ class RolesController < ApplicationController
     end
   end
   
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_role
+      @role = Role.find(params[:id])
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def role_params
+      params.require(:role).permit(:name, :parent_id, :mission_id )
+    end
 
   
   
