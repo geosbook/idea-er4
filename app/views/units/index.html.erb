@@ -1,0 +1,41 @@
+<h1>Listing units</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Lat</th>
+      <th>Lng</th>
+      <th>Speed</th>
+      <th>Course</th>
+      <th>Height</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @units.each do |unit| %>
+      <tr>
+        <td><%= unit.name %></td>
+        <td><%= unit.type %></td>
+        <td><%= unit.lat %></td>
+        <td><%= unit.lng %></td>
+        <td><%= unit.speed %></td>
+        <td><%= unit.course %></td>
+        <td><%= unit.height %></td>
+        <td><%= unit.status %></td>
+        <td><%= link_to 'Show', unit %></td>
+        <td><%= link_to 'Edit', edit_unit_path(unit) %></td>
+        <td><%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Unit', new_unit_path %>

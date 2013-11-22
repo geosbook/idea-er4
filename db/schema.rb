@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131116125429) do
+ActiveRecord::Schema.define(version: 20131122121206) do
 
   create_table "assets", force: true do |t|
     t.string   "name"
@@ -104,6 +104,19 @@ ActiveRecord::Schema.define(version: 20131116125429) do
     t.string   "type"
     t.float    "lat"
     t.float    "lng"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "units", force: true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.float    "lat"
+    t.float    "lng"
+    t.float    "speed"
+    t.float    "course"
+    t.float    "height"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"

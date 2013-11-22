@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @unit.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @unit.type %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @unit.lat %>
+</p>
+
+<p>
+  <strong>Lng:</strong>
+  <%= @unit.lng %>
+</p>
+
+<p>
+  <strong>Speed:</strong>
+  <%= @unit.speed %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @unit.course %>
+</p>
+
+<p>
+  <strong>Height:</strong>
+  <%= @unit.height %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @unit.status %>
+</p>
+
+<%= link_to 'Edit', edit_unit_path(@unit) %> |
+<%= link_to 'Back', units_path %>

@@ -1,5 +1,7 @@
 IdeaEr4::Application.routes.draw do
 
+  resources :units
+
   match '/contexts/:id/list' => "contexts#list", via: 'get'
   match '/contexts/:id/geosmapslist' => "geosmaps#list", via: 'get'
   match '/missions/:id/newchild' => "missions#newchild", via: 'get'
