@@ -4,11 +4,11 @@
   <tr>
     <th>Name</th>
     <th>Id</th>
-    <th>Parent</th>
+    <th>Superior</th>
     <th>Type</th>
     <th>Child</th>
     <th>Mission</th>
-    <th>Head</th>
+    <th>Unit Head</th>
     <th>Manager</th>
   </tr>
 
@@ -16,11 +16,16 @@
   <tr>
     <td><%= role.name %></td>
     <td><%= role.id %></td>
-    <td><%= role.parent_id %></td>
+    <% if role.parent_id != nil %>
+       <% @parent = Role.find(role.parent_id)%>
+       <td><%= @parent.name %></td>
+    <% else %>
+       <td><%= " - " %></td>    
+    <% end%>
     <td><%= role.enrollable_type %></td>
     <td><%= role.enrollable_id %></td>
     <td><%= role.mission_id %></td>
-    <td><%= role.head %></td>
+    <td><%= role.headofunit %></td>
     <td><%= role.manager_id %></td>
     <td><%= button_to 'Change', edit_role_path(role), :class=>"btn", :method=>:get %></td>
     <td><%= button_to 'New Role',{:controller=> 'roles', :id=> role.id,:action=> 'newchild'} , :class=>"btn btn-primary", :method=>:get %></td>

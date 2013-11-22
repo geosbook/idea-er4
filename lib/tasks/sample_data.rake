@@ -11,9 +11,11 @@ namespace :db do
                           is in charge to identify all incidents in the area of 
                           interest and activate and monitor the appropriate assets for the 
                           quickly resolution of the incidents')
-    @role = Role.create!(name: 'CEO', mission_id: @mission.id, head: true)
-    User.create!(name: 'CEO',
-                          email: 'ceo@idea.com',
+    @unit = Unit.create!(name:'IDEA-ER4')
+    @role = Role.create!(name: 'IDEA-ER4', mission_id: @mission.id, enrollable_type: "unit",
+                                     enrollable_id: @unit.id, headofunit: false)
+    User.create!(name: 'IDEA-ER4',
+                          email: 'idea-er4@idea.com',
                           password: 'foobar',
                           password_confirmation: 'foobar',
                           admin: true,

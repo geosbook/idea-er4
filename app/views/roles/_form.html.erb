@@ -16,6 +16,14 @@
     <%= f.text_field :name %>
     </div>
 
+  <div class="field">
+    <%= f.label :head_of_unit %>
+    <%= f.radio_button(:headofunit, "false", checked: true) %> 
+    <%= label_tag(:no, "No")  %>
+    <%= f.radio_button(:headofunit, "true") %>
+    <%= label_tag(:yes, "Yes")  %>
+    </div>
+
 
   <div class="actions">
     <%= f.submit %>

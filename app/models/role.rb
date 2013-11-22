@@ -11,7 +11,7 @@
 #  manager_id      :integer
 #  created_at      :datetime
 #  updated_at      :datetime
-#  head            :boolean          default(FALSE)
+#  headofunit      :boolean
 #
 
 class Role < ActiveRecord::Base

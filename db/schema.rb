@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131122121206) do
+ActiveRecord::Schema.define(version: 20131122135349) do
 
   create_table "assets", force: true do |t|
     t.string   "name"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20131122121206) do
     t.integer  "manager_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "head",            default: false
+    t.boolean  "headofunit"
   end
 
   create_table "sites", force: true do |t|

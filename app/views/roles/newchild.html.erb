@@ -22,6 +22,16 @@
     <%= @roleparent.name %>
   
   <div class="field">
+    <%= f.label :head_of_unit %>
+    <%= f.radio_button(:headofunit, "false") %> 
+    <%= label_tag(:no, "No")  %>
+    <%= f.radio_button(:headofunit, "true") %>
+    <%= label_tag(:yes, "Yes")  %>
+    </div>
+
+
+
+  <div class="field">
     <%= f.hidden_field :parent_id, {value: @roleparent.id} %> 
   </div>
 <br />
