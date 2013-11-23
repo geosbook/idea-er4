@@ -22,7 +22,8 @@ IdeaEr4::Application.routes.draw do
     resources :roles
   end
   
-  resources :users
+  match '/users/:id/edit' => "users#edit", via: 'put'
+  resources :users 
   resources :sessions, only: [:new, :create, :destroy]
   root 'static_pages#home'
   match "/register", to: 'users#new', via: 'get'

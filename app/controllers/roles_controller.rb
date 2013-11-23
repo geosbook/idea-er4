@@ -7,7 +7,7 @@ class RolesController < ApplicationController
   end
 
   def edit
-
+    @roleparent = Role.find(params[:id])
   end
 
   def update

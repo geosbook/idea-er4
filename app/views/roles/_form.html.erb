@@ -14,8 +14,33 @@
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-    </div>
+  </div>
+  
+  <% if @role.id != 1 %>
 
+  <div class="field">
+    <%= f.label :type %> 
+    <%= f.select(:enrollable_type, options_for_select([['Unit','unit'],
+                                                       ['Person','person'],
+                                                       ['Asset','asset'],
+                                                       ['Site','site']], @role.enrollable_type) )%>
+ </div>
+  <% if @role.enrollable_type != "unit" %>
+    <% if @role.enrollable_type == "person" %>
+      <%= f.label :name %> 
+      <%= f.select(:enrollable_id, options_from_collection_for_select(Person.select("lastname,id"),:id, :lastname) )%>
+    <% else %>
+      <% if @role.enrollable_type == "asset" %>
+           <%= f.label :name %> 
+           <%= f.select(:enrollable_id, options_from_collection_for_select(Asset.select("name,id"),:id, :name) )%>
+      <% else %>
+           <%= f.label :name %> 
+           <%= f.select(:enrollable_id, options_from_collection_for_select(Site.select("name,id"),:id, :name) )%>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if @roleparent.enrollable_type == "unit" %>
   <div class="field">
     <%= f.label :head_of_unit %>
     <%= f.radio_button(:headofunit, "false", checked: true) %> 
@@ -23,8 +48,8 @@
     <%= f.radio_button(:headofunit, "true") %>
     <%= label_tag(:yes, "Yes")  %>
     </div>
-
-
+  <% end %>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

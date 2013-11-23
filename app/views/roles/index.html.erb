@@ -6,10 +6,9 @@
     <th>Id</th>
     <th>Superior</th>
     <th>Type</th>
-    <th>Child</th>
+    <th>Reg. Name</th>
     <th>Mission</th>
     <th>Unit Head</th>
-    <th>Manager</th>
   </tr>
 
 <% @roles.each do |role| %>
@@ -23,10 +22,31 @@
        <td><%= " - " %></td>    
     <% end%>
     <td><%= role.enrollable_type %></td>
-    <td><%= role.enrollable_id %></td>
-    <td><%= role.mission_id %></td>
-    <td><%= role.headofunit %></td>
-    <td><%= role.manager_id %></td>
+    <% if role.enrollable_type != 'unit' && role.enrollable_id != nil %>
+       <% if role.enrollable_type == 'person' %>
+          <% @person = Person.find(role.enrollable_id)%>
+          <td><%= @person.firstname + " " + @person.lastname %></td>
+       <% else %>
+          <% if role.enrollable_type == 'asset' %>
+             <% @asset = Asset.find(role.enrollable_id)%>
+             <td><%= @asset.name %></td>
+          <% else %>
+             <% @site = Site.find(role.enrollable_id)%>
+             <td><%= @site.name %></td>
+          <% end %>
+       <% end %>
+    <% else %>
+       <td><%= '-' %></td>
+    <% end %>
+    
+    
+    <% @mission = Mission.find(role.mission_id)%>
+    <td><%= @mission.name %></td>
+    <% if role.enrollable_type == 'person'%>
+      <td><%= role.headofunit %></td>
+    <% else %>
+      <td> <%= '-' %></td>
+    <% end %>
     <td><%= button_to 'Change', edit_role_path(role), :class=>"btn", :method=>:get %></td>
     <td><%= button_to 'New Role',{:controller=> 'roles', :id=> role.id,:action=> 'newchild'} , :class=>"btn btn-primary", :method=>:get %></td>
     <% if role.id != 1 %>
