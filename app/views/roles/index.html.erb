@@ -9,6 +9,11 @@
     <th>Reg. Name</th>
     <th>Mission</th>
     <th>Unit Head</th>
+    <th>Account</th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    
   </tr>
 
 <% @roles.each do |role| %>
@@ -47,6 +52,12 @@
     <% else %>
       <td> <%= '-' %></td>
     <% end %>
+    <% @account= role.user %>
+    <% if @account != nil %>
+      <td> <%= @account.email %></td>
+    <%else%>
+      <td>-</td>
+    <%end%>
     <td><%= button_to 'Change', edit_role_path(role), :class=>"btn", :method=>:get %></td>
     <td><%= button_to 'New Role',{:controller=> 'roles', :id=> role.id,:action=> 'newchild'} , :class=>"btn btn-primary", :method=>:get %></td>
     <% if role.id != 1 %>

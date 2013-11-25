@@ -12,8 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :account %>   
+    <% @account= @role.user %>
+    <% if @account != nil %>
+    <%= @account.email %> / <%= button_to 'Delete Account',{:controller=> 'users', :id=> @role.user.id,:action=> 'destroy'} , :class=>"btn btn-primary", :method=>:delete %>
+    <%else%>
+     -  / <%= button_to 'New Account',{:controller=> 'users', :id=> @role.id,:action=> 'newaccount'} , :class=>"btn btn-primary", :method=>:get %>
+    <%end%>
   </div>
   
   <% if @role.id != 1 %>
@@ -50,6 +59,7 @@
     </div>
   <% end %>
   <% end %>
+  </br>
   <div class="actions">
     <%= f.submit %>
   </div>
