@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :destroyaccount]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
 
@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def newacccount
+  def newaccount
     @user = User.new
     @role = Role.find(params[:id])
   end
@@ -46,18 +46,31 @@ class UsersController < ApplicationController
     end 
     
   end
+
+  def editaccount
+    
+  end
+
+  def updateaccount
+    
+  end
   
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted."
     redirect_to users_url
   end
+  def destroyaccount
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted."
+    redirect_to roles_url
+  end
  
   private
   
    def user_params
      params.require(:user).permit(:name, :email, :password, 
-                                      :password_confirmation)
+                                      :password_confirmation, :role_id)
    end
 
    def signed_in_user

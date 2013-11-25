@@ -23,6 +23,8 @@ IdeaEr4::Application.routes.draw do
   end
   
   match '/roles/:id/newaccount' => "users#newaccount", via: 'get'
+  match '/users/destroyaccount/:id' => "users#destroyaccount", via: 'delete'
+  match '/users/:id/editaccount' => "users#edit", via: 'get'
   match '/users/:id/edit' => "users#edit", via: 'put'
   resources :users 
   resources :sessions, only: [:new, :create, :destroy]

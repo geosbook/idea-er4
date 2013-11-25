@@ -19,9 +19,10 @@
     <%= f.label :account %>   
     <% @account= @role.user %>
     <% if @account != nil %>
-    <%= @account.email %> / <%= button_to 'Delete Account',{:controller=> 'users', :id=> @role.user.id,:action=> 'destroy'} , :class=>"btn btn-primary", :method=>:delete %>
+    <%= @account.email %> / <%= link_to 'Delete Account',{:id=>@role.user.id,:controller=>'users', :action=>'destroyaccount'}, :method=>:delete %>
+    / <%= link_to 'Update Account',{:controller=>'users', :id=>@role.user.id,:action=>'edit'}, :method=>:get %>
     <%else%>
-     -  / <%= button_to 'New Account',{:controller=> 'users', :id=> @role.id,:action=> 'newaccount'} , :class=>"btn btn-primary", :method=>:get %>
+     -  / <%= link_to 'New Account',{:controller=> 'users', :id=> @role.id,:action=> 'newaccount'} , :method=>:get %>
     <%end%>
   </div>
   
@@ -36,14 +37,14 @@
  </div>
   <% if @role.enrollable_type != "unit" %>
     <% if @role.enrollable_type == "person" %>
-      <%= f.label :name %> 
+      <%= f.label :person_name %> 
       <%= f.select(:enrollable_id, options_from_collection_for_select(Person.select("lastname,id"),:id, :lastname) )%>
     <% else %>
       <% if @role.enrollable_type == "asset" %>
-           <%= f.label :name %> 
+           <%= f.label :asset_name %> 
            <%= f.select(:enrollable_id, options_from_collection_for_select(Asset.select("name,id"),:id, :name) )%>
       <% else %>
-           <%= f.label :name %> 
+           <%= f.label :site_name %> 
            <%= f.select(:enrollable_id, options_from_collection_for_select(Site.select("name,id"),:id, :name) )%>
       <% end %>
     <% end %>
